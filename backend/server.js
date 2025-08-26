@@ -11,6 +11,16 @@ app.use(cors());
 
 dotenv.config()
 app.use("/api/notes",userRoutes)
+
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    uptime: process.uptime().toFixed(0) + 's',
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
+  });
+});
+
 connectDB().then(() => {
     app.listen(5001, () => {
         console.log("Server running on port 5001");
