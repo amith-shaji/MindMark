@@ -10,6 +10,9 @@ app.use(express.json())
 app.use(cors());
 
 dotenv.config()
+
+const PORT = process.env.PORT || 5001; 
+
 app.use("/api/notes",userRoutes)
 
 app.get('/health', (req, res) => {
@@ -22,7 +25,7 @@ app.get('/health', (req, res) => {
 });
 
 connectDB().then(() => {
-    app.listen(5001, () => {
+    app.listen(PORT, () => {
         console.log("Server running on port 5001");
     });
 }).catch((error) => {
